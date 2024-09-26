@@ -1,3 +1,9 @@
+import { Router } from "@/app/router";
+
 export function App() {
-  return <p>app</p>;
+  return (
+    <div>
+      <Router />
+    </div>
+  );
 }
