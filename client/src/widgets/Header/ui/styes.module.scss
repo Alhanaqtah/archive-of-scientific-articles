@@ -1,0 +1,30 @@
+.header {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-family: Jaro;
+  font-size: 24px;
+
+  img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 16px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
