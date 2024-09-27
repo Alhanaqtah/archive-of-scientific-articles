@@ -1,0 +1,23 @@
+.table {
+  border-radius: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  border: none;
+
+  thead {
+    color: #fff;
+    background-color: #4164a4;
+    font-size: 18px;
+  }
+
+  td,
+  th {
+    border: 1px solid #000;
+    padding: 14px 20px;
+    font-size: 18px;
+  }
+
+  td {
+    background-color: #fff;
+  }
+}
