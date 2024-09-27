@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 
-import styles from "./styes.module.scss";
+import styles from "./style.module.scss";
 
 import LogoIcon from "@/shared/assets/Logo.svg";
 import HelpIcon from "@/shared/assets/Help.svg";

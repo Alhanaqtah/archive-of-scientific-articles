@@ -8,6 +8,12 @@
   src: url("../..//shared/assets/fonts/Jaro-Regular.woff");
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .app {
   font-family: Montserrat;
   max-height: 100vh;
@@ -15,4 +21,24 @@
 
 a.link__active {
   text-decoration: underline;
+}
+
+main,
+header {
+  background-color: #f2f2f2;
+
+  h1 {
+    text-align: center;
+    font-size: 28px;
+  }
+}
+
+button {
+  background-color: inherit;
+  border: none;
+}
+
+input {
+  border: none;
+  outline: none;
 }
