@@ -5,43 +5,38 @@ import { Home } from "@/pages/Home";
 import { Profile } from "@/pages/Profile";
 import { SignIn } from "@/pages/SignIn";
 import { SignUp } from "@/pages/SignUp";
-import {
-  ARTICLES_PAGE_ROUTE,
-  CREATE_ARTICLE_PAGE_ROUTE,
-  FAVORITES_PAGE_ROUTE,
-  HOME_PAGE_ROUTE,
-  PROFILE_PAGE_ROUTE,
-  SIGNIN_PAGE_ROUTE,
-  SIGNUP_PAGE_ROUTE,
-} from "@/shared/utils/constants";
+import { PAGE_ROUTES } from "@/shared/utils/constants";
+
+const { ARTICLES, CREATE_ARTICLE, FAVORITES, HOME, PROFILE, SIGNIN, SIGNUP } =
+  PAGE_ROUTES;
 
 export const roteMap = [
   {
-    path: ARTICLES_PAGE_ROUTE,
+    path: ARTICLES,
     element: <Article />,
   },
   {
-    path: CREATE_ARTICLE_PAGE_ROUTE,
+    path: CREATE_ARTICLE,
     element: <CreateArticle />,
   },
   {
-    path: FAVORITES_PAGE_ROUTE,
+    path: FAVORITES,
     element: <Favorites />,
   },
   {
-    path: HOME_PAGE_ROUTE,
+    path: HOME,
     element: <Home />,
   },
   {
-    path: PROFILE_PAGE_ROUTE,
+    path: PROFILE,
     element: <Profile />,
   },
   {
-    path: SIGNIN_PAGE_ROUTE,
+    path: SIGNIN,
     element: <SignIn />,
   },
   {
-    path: SIGNUP_PAGE_ROUTE,
+    path: SIGNUP,
     element: <SignUp />,
   },
 ];

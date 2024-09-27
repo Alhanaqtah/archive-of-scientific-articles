@@ -5,14 +5,11 @@ import styles from "./styes.module.scss";
 import LogoIcon from "@/shared/assets/Logo.svg";
 import HelpIcon from "@/shared/assets/Help.svg";
 import FavoritesIcon from "@/shared/assets/Favorite-inactive.svg";
-import {
-  FAVORITES_PAGE_ROUTE,
-  HOME_PAGE_ROUTE,
-  PROFILE_PAGE_ROUTE,
-} from "@/shared/utils/constants";
+import { PAGE_ROUTES } from "@/shared/utils/constants";
 import classNames from "classnames";
 
 export function Header() {
+  const { HOME, PROFILE, FAVORITES } = PAGE_ROUTES;
   const path = useLocation().pathname;
 
   return (
@@ -23,18 +20,18 @@ export function Header() {
       </div>
       <nav className={styles.navBar}>
         <Link
-          className={classNames({ link__active: path === HOME_PAGE_ROUTE })}
-          to={HOME_PAGE_ROUTE}
+          className={classNames({ link__active: path === HOME })}
+          to={HOME}
         >
           Главная
         </Link>
         <Link
-          className={classNames({ link__active: path === HOME_PAGE_ROUTE })}
-          to={PROFILE_PAGE_ROUTE}
+          className={classNames({ link__active: path === PROFILE })}
+          to={PROFILE}
         >
           Профиль
         </Link>
-        <Link to={FAVORITES_PAGE_ROUTE}>
+        <Link to={FAVORITES}>
           <img src={FavoritesIcon} alt="like image" />
         </Link>
         <p>
