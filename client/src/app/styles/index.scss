@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../..//shared/assets/fonts/Montserrat-Regular.woff");
+}
+
+@font-face {
+  font-family: "Jaro";
+  src: url("../..//shared/assets/fonts/Jaro-Regular.woff");
+}
+
+.app {
+  font-family: Montserrat;
+  max-height: 100vh;
+}
+
+a.link__active {
+  text-decoration: underline;
+}
