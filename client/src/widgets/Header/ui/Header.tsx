@@ -4,7 +4,7 @@ import styles from "./styes.module.scss";
 
 import LogoIcon from "@/shared/assets/Logo.svg";
 import HelpIcon from "@/shared/assets/Help.svg";
-import FavoritesIcon from "@/shared/assets/Favorite-inactive.svg";
+import { FavoritesIcon } from "@/shared/ui/FavoritesIcon";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
 import classNames from "classnames";
 
@@ -19,10 +19,7 @@ export function Header() {
         <p>PaperHive</p>
       </div>
       <nav className={styles.navBar}>
-        <Link
-          className={classNames({ link__active: path === HOME })}
-          to={HOME}
-        >
+        <Link className={classNames({ link__active: path === HOME })} to={HOME}>
           Главная
         </Link>
         <Link
@@ -32,7 +29,7 @@ export function Header() {
           Профиль
         </Link>
         <Link to={FAVORITES}>
-          <img src={FavoritesIcon} alt="like image" />
+          <FavoritesIcon isActive={path === FAVORITES} />
         </Link>
         <p>
           <img src={HelpIcon} alt="help icon" />
