@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  width: 260px;
+  gap: 10px;
+  align-items: center;
+
+  .pages {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  span {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    display: grid;
+    place-items: center;
+  }
+
+  .active {
+    border-radius: 50%;
+    background-color: #f6ce52;
+    aspect-ratio: 1;
+  }
+}

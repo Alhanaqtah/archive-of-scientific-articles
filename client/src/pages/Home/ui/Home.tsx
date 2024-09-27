@@ -1,4 +1,5 @@
 import { ArticlesTable } from "@/widgets/ArticlesTable";
+import { Pagination } from "@/widgets/Pagination";
 import { SearchBar } from "@/widgets/SearchBar";
 
 export function Home() {
@@ -8,6 +9,7 @@ export function Home() {
     <main>
       <h1>Все статьи</h1>
       <SearchBar />
+      <Pagination />
       <ArticlesTable articles={articles} />
     </main>
   );
