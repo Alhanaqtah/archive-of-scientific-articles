@@ -1,0 +1,40 @@
+.profileForm {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  label {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  input {
+    width: 100%;
+    font-size: 16px;
+    padding: 14px 20px;
+    margin-bottom: 10px;
+  }
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+
+    div {
+      flex-grow: 1;
+    }
+  }
+
+  button {
+    align-self: flex-end;
+  }
+}
