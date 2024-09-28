@@ -16,7 +16,8 @@
 
 .app {
   font-family: Montserrat;
-  max-height: 100vh;
+  height: 100vh;
+  background-color: #f2f2f2;
 }
 
 a.link__active {
@@ -26,7 +27,8 @@ a.link__active {
 
 main,
 header {
-  background-color: #f2f2f2;
+  max-width: 1200px;
+  margin-inline: auto;
 
   h1 {
     text-align: center;
@@ -37,6 +39,7 @@ header {
 button {
   background-color: inherit;
   border: none;
+  cursor: pointer;
 }
 
 input {

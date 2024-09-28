@@ -1,0 +1,27 @@
+.homePage {
+  margin-top: 40px;
+
+  .toolBar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .searchBar {
+    flex-grow: 1;
+  }
+
+  .pagination {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .button {
+    position: absolute;
+    right: 0;
+  }
+}
