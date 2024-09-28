@@ -10,6 +10,10 @@
     font-size: 18px;
   }
 
+  tbody tr {
+    cursor: pointer;
+  }
+
   td,
   th {
     border: 1px solid #000;
