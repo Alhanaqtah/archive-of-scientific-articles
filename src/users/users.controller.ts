@@ -8,31 +8,31 @@ import { RolesGuard } from 'src/auth/roles.guard';
 export class UsersController {
     constructor(private userService: UsersService) {}
 
-    // @UseGuards(RolesGuard)
-    @Roles('admin')
-    @Post()
-    async create(@Body() userDto: CreateUserDto) {
-        return this.userService.createUser(userDto);
-    }
+    // // @UseGuards(RolesGuard)
+    // @Roles('admin')
+    // @Post()
+    // async create(@Body() userDto: CreateUserDto) {
+    //     return this.userService.createUser(userDto);
+    // }
 
     // @UseGuards(RolesGuard)
-    @Roles('admin')
+    // @Roles('admin')
     @Get(':id')
     async read(@Param('id') userId: string) {
         return this.userService.read(userId);
     }
 
-    // @UseGuards(RolesGuard)
-    @Roles('admin')
-    @Patch(':id')
-    async update(@Param('id') userId: string, @Body() userDto: CreateUserDto) {
-        return this.userService.update(userId, userDto);
-    }
+    // // @UseGuards(RolesGuard)
+    // @Roles('admin')
+    // @Patch(':id')
+    // async update(@Param('id') userId: string, @Body() userDto: CreateUserDto) {
+    //     return this.userService.update(userId, userDto);
+    // }
 
-    // @UseGuards(RolesGuard)
-    @Roles('admin')
-    @Delete(':id')
-    async delete(@Param('id') userId: string) {
-        // return this.userService.remove(userId);
-    }
+    // // @UseGuards(RolesGuard)
+    // @Roles('admin')
+    // @Delete(':id')
+    // async delete(@Param('id') userId: string) {
+    //     // return this.userService.remove(userId);
+    // }
 }
