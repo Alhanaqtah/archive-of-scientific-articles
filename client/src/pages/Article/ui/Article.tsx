@@ -67,7 +67,9 @@ export function Article() {
       </div>
       <div className={styles.buttons}>
         <Button onClick={handleGoBack}>Назад</Button>
-        <Button color="yellow">В избранное</Button>
+        <Button color="yellow" colorStyle="outline">
+          В избранное
+        </Button>
       </div>
       <Comments />
     </main>
