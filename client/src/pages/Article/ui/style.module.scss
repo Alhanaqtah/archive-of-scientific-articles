@@ -1,0 +1,51 @@
+.articlesPage {
+  margin-top: 40px;
+  padding-bottom: 80px;
+
+  h1 {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 28px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  .fileDownload {
+    margin-top: 20px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+
+    h2 {
+      padding: 14px 20px;
+      flex-grow: 1;
+      font-size: 18px;
+    }
+  }
+
+  .credits {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      font-size: 14px;
+      color: #686868;
+    }
+  }
+
+  .keywords {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,18 @@
+.comment {
+  background-color: #fff;
+  padding: 20px;
+  border-bottom: 2px solid #000000;
+
+  .name {
+    font-weight: 700;
+    margin-right: 20px;
+  }
+
+  .date {
+    color: #686868;
+  }
+
+  span {
+    margin-bottom: 5px;
+  }
+}
