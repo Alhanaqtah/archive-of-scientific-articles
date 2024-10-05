@@ -1,9 +1,9 @@
 import { Role } from "src/roles/roles.model";
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Article } from "../articles/articles.model";
 
 @Entity({name: 'users'})
 export class User {
-    
     @PrimaryGeneratedColumn('uuid')
     id: string
 
@@ -12,6 +12,9 @@ export class User {
 
     @Column({type: 'bytea', name: 'pass_hash'})
     password: string
+
+    @OneToMany(() => Article, article => article.author)
+    articles: Article[] 
 
     @Column({type: 'boolean', default: true})
     is_active: boolean
