@@ -1,0 +1,44 @@
+.page {
+  margin-top: 40px;
+  padding-bottom: 80px;
+
+  div {
+    margin-inline: auto;
+    max-width: 700px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 28px;
+  }
+
+  label {
+    font-size: 24px;
+  }
+
+  input {
+    font-size: 18px;
+    padding: 14px 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  button {
+    align-self: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  a {
+    color: #000;
+    font-weight: 700;
+  }
+}
