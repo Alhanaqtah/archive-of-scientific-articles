@@ -1,6 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { User } from '../users/user.model';
-
+import { Comment } from '../comments/comments.model';
 @Entity()
 export class Article {
   @PrimaryGeneratedColumn('uuid')
@@ -23,5 +23,8 @@ export class Article {
 
   @Column('simple-array')
   keywords: string[]; 
+
+  @OneToMany(() => Comment, comment => comment.article)
+  comments: Comment[];
 }
 
