@@ -1,1 +1,1 @@
-export { CreateArticle } from "./CreateArticle";
+export { CreateArticle } from "./ui/CreateArticle";

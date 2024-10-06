@@ -1,0 +1,58 @@
+.articlesPage {
+  margin-top: 40px;
+  padding-bottom: 80px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 28px;
+  }
+
+  input,
+  label {
+    display: block;
+    width: 100%;
+  }
+
+  label {
+    font-size: 24px;
+  }
+
+  input {
+    padding: 14px 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .fileDownload {
+    margin-top: 20px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .bottomArea {
+    display: flex;
+    justify-content: space-between;
+
+    > div {
+      flex-basis: 48%;
+    }
+  }
+
+  .keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
