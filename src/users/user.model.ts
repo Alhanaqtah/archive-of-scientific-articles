@@ -1,6 +1,7 @@
 import { Role } from "src/roles/roles.model";
 import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Article } from "../articles/articles.model";
+import { Favourite } from "src/favourites/favourites.model";
 
 @Entity({name: 'users'})
 export class User {
@@ -22,4 +23,7 @@ export class User {
     @ManyToMany(type => Role, role => role.users, {onDelete: 'CASCADE'})
     @JoinTable({name: 'users_roles'})
     roles: Role[]    
+
+    @OneToMany(() => Favourite, favourite => favourite.user)
+    favourites: Favourite[]
 }

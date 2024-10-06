@@ -8,6 +8,6 @@ import { User } from 'src/users/user.model';
 @Module({
   imports: [TypeOrmModule.forFeature([Article, User])],
   controllers: [ArticlesController],
-  providers: [ArticlesService]
+  providers: [ArticlesService],
 })
 export class ArticlesModule {}

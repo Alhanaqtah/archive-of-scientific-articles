@@ -8,6 +8,8 @@ import { ArticlesModule } from './articles/articles.module';
 import { RolesModule } from './roles/roles.module';
 import { UsersModule } from './users/users.module';
 import { Article } from './articles/articles.model';
+import { FavouritesModule } from './favourites/favourites.module';
+import { Favourite } from './favourites/favourites.model';
 
 @Module({
   imports: [
@@ -18,7 +20,7 @@ import { Article } from './articles/articles.model';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      entities: [User, Role, Article],
+      entities: [User, Role, Article, Favourite],
       synchronize: true,
       autoLoadEntities: true
     }),
@@ -26,6 +28,7 @@ import { Article } from './articles/articles.model';
     RolesModule,
     UsersModule,
     ArticlesModule,
+    FavouritesModule,
   ],
   controllers: [AppController],
 })
