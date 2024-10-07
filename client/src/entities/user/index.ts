@@ -1,3 +1,3 @@
-import { UserService } from "./model";
+import { User, UserService, LoginData, RegisterData } from "./model";
 
-export { UserService };
+export { type User, UserService, type LoginData, type RegisterData };

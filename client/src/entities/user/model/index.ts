@@ -1,20 +1,20 @@
 import { api } from "@/app/api";
 import { AxiosResponse } from "axios";
 
-interface User {
-  name: string;
-  surname: string;
+export interface User {
+  id: number;
   email: string;
+  is_active: boolean;
 }
 
-interface RegisterData {
+export interface RegisterData {
   name: string;
   surname: string;
   email: string;
   password: string;
 }
 
-interface LoginData {
+export interface LoginData {
   name: string;
   surname: string;
   email: string;
@@ -22,7 +22,7 @@ interface LoginData {
 }
 
 interface AuthResponse {
-  userId: number;
+  id: number;
 }
 
 export class UserService {
