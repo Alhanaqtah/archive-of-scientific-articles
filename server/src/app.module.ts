@@ -18,10 +18,10 @@ import { Comment } from './comments/comments.model';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 3001,
+      port: 5432,
       username: 'postgres',
       password: 'postgres',
-      database: 'postgres',
+      database: 'article_archive',
       entities: [User, Role, Article, Favourite, Comment],
       synchronize: true,
       autoLoadEntities: true
