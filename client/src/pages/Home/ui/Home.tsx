@@ -6,10 +6,8 @@ import styles from "./style.module.scss";
 import { Button } from "@/shared/ui/Button";
 import { Link } from "react-router-dom";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
-import { useCheckUser } from "@/shared/hooks";
 
 export function Home() {
-  useCheckUser();
   const articles: string[] = ["apple", "banana", "orange", "pineapple"];
 
   return (
