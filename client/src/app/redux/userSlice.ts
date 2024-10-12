@@ -29,7 +29,13 @@ export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (registerData: RegisterData) => {
     const res = await UserService.register(registerData);
-    return res.data;
+    console.log(res);
+    const user: User = {
+      email: "random",
+      id: 1,
+      is_active: true,
+    };
+    return user;
   }
 );
 
@@ -37,7 +43,13 @@ export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (loginData: LoginData) => {
     const res = await UserService.login(loginData);
-    return res.data;
+    console.log(res);
+    const user: User = {
+      email: "random",
+      id: 1,
+      is_active: true,
+    };
+    return user;
   }
 );
 
@@ -50,11 +62,41 @@ const userSlice = createSlice({
       state.user = action.payload;
       state.isLoading = false;
     });
+
     builder.addCase(getUser.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });
+
     builder.addCase(getUser.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.isLoading = false;
+    });
+
+    builder.addCase(loginUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(loginUser.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    builder.addCase(registerUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.isLoading = false;
+    });
+
+    builder.addCase(registerUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(registerUser.pending, (state) => {
       state.isLoading = true;
     });
   },

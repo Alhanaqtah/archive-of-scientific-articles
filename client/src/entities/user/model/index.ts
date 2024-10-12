@@ -22,14 +22,14 @@ export interface LoginData {
 }
 
 interface AuthResponse {
-  id: number;
+  token: string;
 }
 
 export class UserService {
   static async register(
     registerData: RegisterData
   ): Promise<AxiosResponse<AuthResponse>> {
-    const res = await api.post<AuthResponse>("/auth/sign-up", registerData);
+    const res = await api.post<AuthResponse>("/auth/signup", registerData);
     return res;
   }
 
