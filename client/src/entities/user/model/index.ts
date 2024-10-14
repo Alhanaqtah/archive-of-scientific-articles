@@ -2,9 +2,7 @@ import { api } from "@/app/api";
 import { AxiosResponse } from "axios";
 
 export interface User {
-  id: number;
-  email: string;
-  is_active: boolean;
+  sub: string;
 }
 
 export interface RegisterData {

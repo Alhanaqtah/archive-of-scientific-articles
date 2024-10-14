@@ -1,20 +1,17 @@
 import { LoginData, RegisterData, User, UserService } from "@/entities/user";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { jwtDecode } from "jwt-decode";
 
 interface UserState {
-  user: User;
+  user: User | null;
   isLoading: boolean;
   error: unknown;
 }
 
 const initialState: UserState = {
-  user: {
-    id: 0,
-    email: "",
-    is_active: false,
-  },
-  error: "",
+  user: null,
   isLoading: false,
+  error: "",
 };
 
 export const getUser = createAsyncThunk(
@@ -29,12 +26,7 @@ export const registerUser = createAsyncThunk(
   "user/registerUser",
   async (registerData: RegisterData) => {
     const res = await UserService.register(registerData);
-    console.log(res);
-    const user: User = {
-      email: "random",
-      id: 1,
-      is_active: true,
-    };
+    const user: User = jwtDecode(res.data.token);
     return user;
   }
 );
@@ -43,12 +35,7 @@ export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (loginData: LoginData) => {
     const res = await UserService.login(loginData);
-    console.log(res);
-    const user: User = {
-      email: "random",
-      id: 1,
-      is_active: true,
-    };
+    const user: User = jwtDecode(res.data.token);
     return user;
   }
 );
