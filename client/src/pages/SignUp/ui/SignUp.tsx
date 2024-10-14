@@ -1,6 +1,6 @@
 import { Button } from "@/shared/ui/Button";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { registerUser, useAppDispatch } from "@/app/redux";
@@ -21,6 +21,7 @@ export function SignUp() {
   const [formData, setFormData] = useState<FormData>(initialData);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newData = { ...formData };
@@ -44,6 +45,7 @@ export function SignUp() {
         surname: "",
       })
     );
+    navigate(PAGE_ROUTES.HOME);
 
     setFormData(initialData);
   };

@@ -1,6 +1,6 @@
 import { Button } from "@/shared/ui/Button";
 import styles from "./style.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { loginUser, useAppDispatch } from "@/app/redux";
@@ -19,6 +19,7 @@ export function SignIn() {
   const [formData, setFormData] = useState<FormData>(initialData);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newData = { ...formData };
@@ -37,6 +38,7 @@ export function SignIn() {
         surname: "",
       })
     );
+    navigate(PAGE_ROUTES.HOME);
 
     setFormData(initialData);
   };
