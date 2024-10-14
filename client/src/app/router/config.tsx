@@ -47,4 +47,8 @@ export const router = (isAuthenticated: boolean) =>
         },
       ],
     },
+    {
+      path: "*",
+      element: <div>Not found</div>,
+    },
   ]);
