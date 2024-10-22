@@ -1,1 +1,1 @@
-export { ArticleService } from "./model";
+export { ArticleService, type Article } from "./model";

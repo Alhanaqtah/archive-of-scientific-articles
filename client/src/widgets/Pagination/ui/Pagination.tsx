@@ -5,23 +5,39 @@ import PreviousPageIcon from "@/shared/assets/PreviousPage.svg";
 import FirstPageIcon from "@/shared/assets/FirstPage.svg";
 import LastPageIcon from "@/shared/assets/LastPage.svg";
 
-export function Pagination() {
+interface PaginationProps {
+  page: number;
+  onChange: (page: number) => void;
+}
+
+export function Pagination({ page, onChange }: PaginationProps) {
+  const first = page - 2 > 1 ? page - 2 : 1;
+  const pages = [first, first + 1, first + 2, first + 3, first + 4];
+
   return (
     <div className={styles.pagination}>
       <div>
-        <img src={FirstPageIcon} alt="first page" />
-        <img src={PreviousPageIcon} alt="previous page" />
+        <button onClick={() => onChange(1)}>
+          <img src={FirstPageIcon} alt="first page" />
+        </button>
+        <button disabled={page === 1} onClick={() => onChange(page - 1)}>
+          <img src={PreviousPageIcon} alt="previous page" />
+        </button>
       </div>
       <div className={styles.pages}>
-        <span className={styles.active}>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
+        {pages.map((pageIndex) => (
+          <span className={pageIndex === page ? styles.active : ""}>
+            {pageIndex}
+          </span>
+        ))}
       </div>
       <div>
-        <img src={NextPageIcon} alt="next page" />
-        <img src={LastPageIcon} alt="last page" />
+        <button onClick={() => onChange(page + 1)}>
+          <img src={NextPageIcon} alt="next page" />
+        </button>
+        <button onClick={() => onChange(page + 1)}>
+          <img src={LastPageIcon} alt="last page" />
+        </button>
       </div>
     </div>
   );

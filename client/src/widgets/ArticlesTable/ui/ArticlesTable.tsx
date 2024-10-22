@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
+import { Article } from "@/entities/article";
 
 interface ArticlesTableProps {
-  articles: string[];
+  articles: Article[];
 }
 
 export function ArticlesTable({ articles }: ArticlesTableProps) {
@@ -24,11 +25,11 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
       </thead>
       <tbody>
         {articles.map((article, index) => (
-          <tr key={article} onClick={handleArticleClick(index)}>
-            <td>{article}</td>
-            <td>{article}</td>
-            <td>{article}</td>
-            <td>{article}</td>
+          <tr key={article.id} onClick={handleArticleClick(index)}>
+            <td>{article.title}</td>
+            <td>{article.author}</td>
+            <td>{article.sci_area}</td>
+            <td>{article.created_at}</td>
           </tr>
         ))}
       </tbody>
