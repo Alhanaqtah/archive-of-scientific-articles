@@ -9,7 +9,7 @@ interface ArticlesTableProps {
 
 export function ArticlesTable({ articles }: ArticlesTableProps) {
   const navigate = useNavigate();
-  const handleArticleClick = (id: number) => () => {
+  const handleArticleClick = (id: string) => () => {
     navigate(PAGE_ROUTES.ARTICLES, { state: { articleId: id } });
   };
 
@@ -24,8 +24,8 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
         </tr>
       </thead>
       <tbody>
-        {articles.map((article, index) => (
-          <tr key={article.id} onClick={handleArticleClick(index)}>
+        {articles.map((article) => (
+          <tr key={article.id} onClick={handleArticleClick(article.id)}>
             <td>{article.title}</td>
             <td>{article.author}</td>
             <td>{article.sci_area}</td>

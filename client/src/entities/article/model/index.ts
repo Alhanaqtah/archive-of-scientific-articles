@@ -26,7 +26,13 @@ export class ArticleService {
     api.post("/articles", articleData);
   }
 
-  static async getArticles(page: number = 1): Promise<AxiosResponse<Article[]>> {
+  static async getArticles(
+    page: number = 1
+  ): Promise<AxiosResponse<Article[]>> {
     return api.get(`/articles?page=${page}&limit=10`);
+  }
+
+  static async getArticle(articleId: string): Promise<AxiosResponse<Article>> {
+    return api.get(`/articles${articleId}`);
   }
 }
