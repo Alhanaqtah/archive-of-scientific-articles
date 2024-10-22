@@ -8,10 +8,27 @@ import { ProfileForm } from "@/widgets/ProfileForm";
 import { Link } from "react-router-dom";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { Header } from "@/widgets/Header";
+import { useEffect, useState } from "react";
+import { Article, ArticleService } from "@/entities/article";
 
 export function Profile() {
-  const articles: string[] = ["apple", "banana", "orange", "pineapple"];
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [page, setPage] = useState(1);
 
+  const getArticles = async (pageNumber?: number) => {
+    const res = await ArticleService.getArticles(pageNumber);
+    setArticles(res.data);
+  };
+
+  const handlePageChange = (pageNumber: number) => {
+    setPage(pageNumber);
+    getArticles(pageNumber);
+  };
+
+  useEffect(() => {
+    getArticles();
+  }, []);
+  
   return (
     <>
       <Header />
@@ -22,11 +39,11 @@ export function Profile() {
           <div className={styles.searchBar}>
             <SearchBar />
           </div>
-          <Pagination />
+          <Pagination page={page} onChange={handlePageChange} />
         </div>
         <ArticlesTable articles={articles} />
         <div className={styles.pagination}>
-          <Pagination />
+          <Pagination page={page} onChange={handlePageChange} />
           <Link to={PAGE_ROUTES.CREATE_ARTICLE}>
             <Button className={styles.button}>Новая статья</Button>
           </Link>
