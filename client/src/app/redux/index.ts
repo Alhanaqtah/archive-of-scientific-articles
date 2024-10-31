@@ -1,6 +1,6 @@
 import { store } from "./store";
 import { useAppDispatch, useAppSelector, useSelectUser } from "./hooks";
-import { getUser, loginUser, registerUser } from "./userSlice";
+import { getUser, loginUser, registerUser, logout } from "./userSlice";
 
 export {
   store,
@@ -10,4 +10,5 @@ export {
   getUser,
   loginUser,
   registerUser,
+  logout,
 };

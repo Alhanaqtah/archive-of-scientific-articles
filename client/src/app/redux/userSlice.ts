@@ -1,4 +1,5 @@
 import { LoginData, RegisterData, User, UserService } from "@/entities/user";
+import { LOCAL_STORAGE_USER_KEY } from "@/shared/utils/constants";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { jwtDecode } from "jwt-decode";
 
@@ -43,7 +44,15 @@ export const loginUser = createAsyncThunk(
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    logout(state) {
+      state.error = initialState.error;
+      state.isLoading = initialState.isLoading;
+      state.user = initialState.user;
+
+      localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getUser.fulfilled, (state, action) => {
       state.user = action.payload;
@@ -62,6 +71,7 @@ const userSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.isLoading = false;
+      localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(state.user));
     });
 
     builder.addCase(loginUser.rejected, (state, action) => {
@@ -76,6 +86,7 @@ const userSlice = createSlice({
     builder.addCase(registerUser.fulfilled, (state, action) => {
       state.user = action.payload;
       state.isLoading = false;
+      localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(state.user));
     });
 
     builder.addCase(registerUser.rejected, (state, action) => {
@@ -90,3 +101,4 @@ const userSlice = createSlice({
 });
 
 export const userReducer = userSlice.reducer;
+export const { logout } = userSlice.actions;

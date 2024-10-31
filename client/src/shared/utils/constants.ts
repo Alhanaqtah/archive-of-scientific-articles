@@ -7,3 +7,5 @@ export const PAGE_ROUTES = {
   SIGNIN: "/signin",
   SIGNUP: "/signup",
 } as const;
+
+export const LOCAL_STORAGE_USER_KEY = "user";

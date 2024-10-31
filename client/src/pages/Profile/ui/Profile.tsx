@@ -9,8 +9,10 @@ import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { Header } from "@/widgets/Header";
 import { useEffect, useState } from "react";
 import { Article, ArticleService } from "@/entities/article";
+import { logout, useAppDispatch } from "@/app/redux";
 
 export function Profile() {
+  const dispatch = useAppDispatch();
   const [articles, setArticles] = useState<Article[]>([]);
   const [page, setPage] = useState(1);
 
@@ -24,10 +26,14 @@ export function Profile() {
     getArticles(pageNumber);
   };
 
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   useEffect(() => {
     getArticles();
   }, []);
-  
+
   return (
     <>
       <Header />
@@ -47,7 +53,9 @@ export function Profile() {
             <Button className={styles.button}>Новая статья</Button>
           </Link>
         </div>
-        <Button color="red">Выйти</Button>
+        <Button color="red" onClick={handleLogout}>
+          Выйти
+        </Button>
       </main>
     </>
   );
