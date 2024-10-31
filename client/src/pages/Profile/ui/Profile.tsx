@@ -4,7 +4,6 @@ import { SearchBar } from "@/widgets/SearchBar";
 
 import styles from "./style.module.scss";
 import { Button } from "@/shared/ui/Button";
-import { ProfileForm } from "@/widgets/ProfileForm";
 import { Link } from "react-router-dom";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { Header } from "@/widgets/Header";
@@ -48,7 +47,7 @@ export function Profile() {
             <Button className={styles.button}>Новая статья</Button>
           </Link>
         </div>
-        <ProfileForm />
+        <Button color="red">Выйти</Button>
       </main>
     </>
   );
