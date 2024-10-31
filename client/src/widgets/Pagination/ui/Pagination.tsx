@@ -3,7 +3,6 @@ import styles from "./style.module.scss";
 import NextPageIcon from "@/shared/assets/NextPage.svg";
 import PreviousPageIcon from "@/shared/assets/PreviousPage.svg";
 import FirstPageIcon from "@/shared/assets/FirstPage.svg";
-import LastPageIcon from "@/shared/assets/LastPage.svg";
 
 interface PaginationProps {
   page: number;
@@ -34,9 +33,6 @@ export function Pagination({ page, onChange }: PaginationProps) {
       <div>
         <button onClick={() => onChange(page + 1)}>
           <img src={NextPageIcon} alt="next page" />
-        </button>
-        <button onClick={() => onChange(page + 1)}>
-          <img src={LastPageIcon} alt="last page" />
         </button>
       </div>
     </div>

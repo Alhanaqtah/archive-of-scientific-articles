@@ -11,7 +11,7 @@ import { PAGE_ROUTES } from "@/shared/utils/constants";
 interface InputData {
   title: string;
   annotation: string;
-  blob: File | null;
+  blob: Blob | null;
   author: string;
   sci_area: string;
   keywords: string[];
@@ -63,11 +63,18 @@ export function CreateArticle() {
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
-    setInputData({
-      ...inputData,
-      blob: e.target.files ? e.target.files[0] : null,
-    });
+    const file = e.target.files ? e.target.files[0] : null;
+    if (file) {
+      const reader = new FileReader();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      reader.addEventListener("load", (e: any) => {
+        setInputData({
+          ...inputData,
+          blob: e.target.result,
+        });
+      });
+      reader.readAsText(file);
+    }
   };
 
   const handleSubmit = (e: FormEvent) => {
