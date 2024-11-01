@@ -11,7 +11,7 @@ import { PAGE_ROUTES } from "@/shared/utils/constants";
 interface InputData {
   title: string;
   annotation: string;
-  blob: Blob | null;
+  metadata: File | null;
   author: string;
   sci_area: string;
   keywords: string[];
@@ -20,7 +20,7 @@ interface InputData {
 const initialState: InputData = {
   title: "",
   annotation: "",
-  blob: null,
+  metadata: null,
   author: "",
   sci_area: "",
   keywords: [],
@@ -70,7 +70,7 @@ export function CreateArticle() {
       reader.addEventListener("load", (e: any) => {
         setInputData({
           ...inputData,
-          blob: e.target.result,
+          metadata: e.target.result,
         });
       });
       reader.readAsText(file);
@@ -111,11 +111,11 @@ export function CreateArticle() {
             value={inputData.annotation}
             required
           />
-          <label htmlFor="blob">Файл со статьей (только pdf)</label>
+          <label htmlFor="file">Файл со статьей (только pdf)</label>
           <div className={styles.fileDownload}>
             <input
-              id="blob"
-              name="blob"
+              id="file"
+              name="file"
               type="file"
               accept=".pdf"
               onChange={handleFileChange}
