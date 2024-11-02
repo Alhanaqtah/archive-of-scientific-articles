@@ -3,41 +3,18 @@ import { Comment } from "@/widgets/Comment";
 
 import styles from "./style.module.scss";
 import SendIcon from "@/shared/assets/Send.svg";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { CommentService, Comment as IComment } from "@/entities/comment";
+import { useAppSelector, useSelectUser } from "@/app/redux";
 
-const comments = [
-  {
-    id: 1,
-    author: "Denis Pupkin",
-    publishDate: "20.02.2002",
-    content:
-      "Текст комментария тоже ограничен в символах и может переноситься на вторую строку расширяя контейнер примерно вот таким образом",
-  },
-  {
-    id: 2,
-    author: "Denis Pupkin",
-    publishDate: "20.02.2002",
-    content:
-      "Текст комментария тоже ограничен в символах и может переноситься на вторую строку расширяя контейнер примерно вот таким образом",
-  },
-  {
-    id: 4,
-    author: "Denis Pupkin",
-    publishDate: "20.02.2002",
-    content:
-      "Текст комментария тоже ограничен в символах и может переноситься на вторую строку расширяя контейнер примерно вот таким образом",
-  },
-  {
-    id: 5,
-    author: "Denis Pupkin",
-    publishDate: "20.02.2002",
-    content:
-      "Текст комментария тоже ограничен в символах и может переноситься на вторую строку расширяя контейнер примерно вот таким образом",
-  },
-];
+interface CommentsProps {
+  articleId: string;
+}
 
-export function Comments() {
+export function Comments({ articleId }: CommentsProps) {
+  const userId = useAppSelector(useSelectUser)?.sub;
   const [showComments, setShowComments] = useState<boolean>(false);
+  const [comments, setComments] = useState<IComment[]>([]);
   const [comment, setComment] = useState("");
   const inputRef = useRef<null | HTMLInputElement>(null);
 
@@ -45,8 +22,21 @@ export function Comments() {
     setShowComments((prev) => !prev);
   };
 
+  const handleFetchComments = async () => {
+    const res = await CommentService.getComments(articleId);
+    setComments(res.data);
+  };
+
   const handleSend = () => {
-    console.log("send: ", comment);
+    if (!userId) {
+      return;
+    }
+
+    CommentService.createComment({ text: comment, articleId, userId }).then(
+      () => {
+        handleFetchComments();
+      }
+    );
     setComment("");
   };
 
@@ -58,6 +48,10 @@ export function Comments() {
     inputRef.current?.focus();
   };
 
+  useEffect(() => {
+    handleFetchComments();
+  }, []);
+
   if (!showComments) {
     return (
       <div className={styles.comments}>
@@ -66,17 +60,16 @@ export function Comments() {
     );
   }
 
+  console.log(comments)
+
   return (
     <div className={styles.comments}>
       <Button onClick={handleToggleShow}>Закрыть комментарии</Button>
-      {comments.map(({ id, author, publishDate, content }) => (
-        <Comment
-          key={id}
-          author={author}
-          publishDate={publishDate}
-          content={content}
-        />
-      ))}
+      {comments.length === 0 ? (
+        <p>Комментариев нету</p>
+      ) : (
+        comments.map((comment) => <Comment key={comment.id} {...comment} />).reverse()
+      )}
       <div className={styles.textBar} onClick={handleFocus}>
         <input
           type="text"

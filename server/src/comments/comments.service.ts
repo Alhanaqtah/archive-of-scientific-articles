@@ -30,7 +30,7 @@ export class CommentsService {
 
     return comments.map(comment => ({
       ...comment,
-      author: comment.author.id
+      author: comment.author.email
     }));
   }
 

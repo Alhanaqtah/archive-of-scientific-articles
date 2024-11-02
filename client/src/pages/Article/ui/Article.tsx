@@ -65,7 +65,7 @@ export function Article() {
             В избранное
           </Button>
         </div>
-        <Comments />
+        <Comments articleId={articleId}/>
       </main>
     </>
   );
