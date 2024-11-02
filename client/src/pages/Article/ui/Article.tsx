@@ -10,16 +10,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "@/widgets/Header";
 import { useEffect, useState } from "react";
 import { Article as IArticle, ArticleService } from "@/entities/article";
+import { PAGE_ROUTES } from "@/shared/utils/constants";
 
 export function Article() {
   const navigate = useNavigate();
   const location = useLocation();
-  const articleId: string = location.state.id;
+  const articleId: string = location.state.articleId;
 
   const [article, setArticle] = useState<IArticle | null>(null);
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate(PAGE_ROUTES.HOME);
   };
 
   const getArticle = async (articleId: string) => {
@@ -49,7 +50,7 @@ export function Article() {
           </Button>
         </div>
         <div className={styles.credits}>
-          <p>{article.author}</p>
+          <p>{article.author.email}</p>
           <p>{article.sci_area}</p>
           <p>{article.created_at}</p>
         </div>

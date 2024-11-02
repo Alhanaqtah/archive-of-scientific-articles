@@ -14,7 +14,7 @@ export interface Article {
   id: string;
   title: string;
   annotation: string;
-  file: Blob | null;
+  blob: Blob | null;
   author: {
     id: string;
     email: string;
@@ -36,6 +36,6 @@ export class ArticleService {
   }
 
   static async getArticle(articleId: string): Promise<AxiosResponse<Article>> {
-    return api.get(`/articles${articleId}`);
+    return api.get(`/articles/${articleId}`);
   }
 }
