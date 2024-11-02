@@ -24,6 +24,9 @@ export class Article {
   @Column('simple-array')
   keywords: string[]; 
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created_at: Date;
+
   @OneToMany(() => Comment, comment => comment.article)
   comments: Comment[];
 }
