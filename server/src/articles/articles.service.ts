@@ -54,8 +54,6 @@ export class ArticlesService {
       throw new NotFoundException('File not found');
     }
     
-    article.blob = articleData.blob;
-
     await this.articleRepository.save(article);
     return {id: article.id};
   }

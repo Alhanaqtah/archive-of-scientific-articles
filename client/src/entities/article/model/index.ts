@@ -4,7 +4,7 @@ import { AxiosResponse } from "axios";
 export interface ArticleData {
   title: string;
   annotation: string;
-  metadata: Blob | null;
+  blob: File | null;
   author: string;
   sci_area: string;
   keywords: string[];

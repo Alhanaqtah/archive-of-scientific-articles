@@ -12,8 +12,8 @@ export class Article {
   @Column({nullable: true})
   annotation: string;
 
-  @Column('bytea')
-  blob: Buffer;
+  @Column("text")
+  blob: string;
 
   @ManyToOne(() => User, user => user.articles)
   author: User;

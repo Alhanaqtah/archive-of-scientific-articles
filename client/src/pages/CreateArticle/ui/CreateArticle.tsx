@@ -11,7 +11,7 @@ import { PAGE_ROUTES } from "@/shared/utils/constants";
 interface InputData {
   title: string;
   annotation: string;
-  metadata: File | null;
+  blob: File | null;
   author: string;
   sci_area: string;
   keywords: string[];
@@ -20,7 +20,7 @@ interface InputData {
 const initialState: InputData = {
   title: "",
   annotation: "",
-  metadata: null,
+  blob: null,
   author: "",
   sci_area: "",
   keywords: [],
@@ -56,24 +56,24 @@ export function CreateArticle() {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInputData({
-      ...inputData,
-      [e.target.name as keyof InputData]: e.target.value,
-    });
-  };
-
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files ? e.target.files[0] : null;
-    if (file) {
+    const targetName = e.target.name as keyof InputData;
+    const targetValue = e.target.value;
+    const targetFiles = e.target.files as FileList;
+    if (targetFiles) {
       const reader = new FileReader();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       reader.addEventListener("load", (e: any) => {
         setInputData({
           ...inputData,
-          metadata: e.target.result,
+          blob: e.target.result,
         });
       });
-      reader.readAsText(file);
+      reader.readAsText(targetFiles[0]);
+    } else {
+      setInputData({
+        ...inputData,
+        [targetName]: targetName === "blob" ? targetFiles[0] : targetValue,
+      });
     }
   };
 
@@ -111,14 +111,14 @@ export function CreateArticle() {
             value={inputData.annotation}
             required
           />
-          <label htmlFor="file">Файл со статьей (только pdf)</label>
+          <label htmlFor="blob">Файл со статьей (только pdf)</label>
           <div className={styles.fileDownload}>
             <input
-              id="file"
-              name="file"
+              id="blob"
+              name="blob"
               type="file"
               accept=".pdf"
-              onChange={handleFileChange}
+              onChange={handleChange}
             />
             <img src={FileIcon} alt="file icon" />
           </div>
