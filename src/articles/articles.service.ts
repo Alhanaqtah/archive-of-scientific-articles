@@ -13,7 +13,7 @@ export class ArticlesService {
     private userRepository: Repository<User>,
   ) {}
 
-  async findAll(page: number = 1, limit: number = 10, query?: string): Promise<Article[]> {
+  async findAll(page: number = 1, limit: number = 10, query?: string) {
     const skip = (page - 1) * limit;
     const where = query ? [
       { title: Like(`%${query}%`) },
@@ -21,12 +21,19 @@ export class ArticlesService {
       { keywords: Like(`%${query}%`) }
     ] : {};
     
-    return this.articleRepository.find({
+    const articles = await this.articleRepository.find({
       where,
       skip,
       take: limit,
       relations: ['author'],
+      select: {
+        author: {
+          email: true,
+        },
+      },
     });
+
+    return articles
   }
 
   async findOne(id: string): Promise<Article> {
