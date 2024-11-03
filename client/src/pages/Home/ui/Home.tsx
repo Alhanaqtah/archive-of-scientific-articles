@@ -1,7 +1,5 @@
 import { ArticlesTable } from "@/widgets/ArticlesTable";
 import { Pagination } from "@/widgets/Pagination";
-import { SearchBar } from "@/widgets/SearchBar";
-
 import styles from "./style.module.scss";
 import { Button } from "@/shared/ui/Button";
 import { Link } from "react-router-dom";
@@ -34,12 +32,6 @@ export function Home() {
 
       <main className={styles.homePage}>
         <h1>Все статьи</h1>
-        <div className={styles.toolBar}>
-          <div className={styles.searchBar}>
-            <SearchBar />
-          </div>
-          <Pagination page={page} onChange={handlePageChange} />
-        </div>
         <ArticlesTable articles={articles} />
         <div className={styles.pagination}>
           <Pagination page={page} onChange={handlePageChange} />
