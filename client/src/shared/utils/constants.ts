@@ -9,3 +9,5 @@ export const PAGE_ROUTES = {
 } as const;
 
 export const LOCAL_STORAGE_USER_KEY = "user";
+
+export const UPDATE_ARTICLE = "updateArticle"

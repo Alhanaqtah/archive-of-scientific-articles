@@ -10,31 +10,54 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Header } from "@/widgets/Header";
 import { useEffect, useState } from "react";
 import { Article as IArticle, ArticleService } from "@/entities/article";
-import { PAGE_ROUTES } from "@/shared/utils/constants";
+import { PAGE_ROUTES, UPDATE_ARTICLE } from "@/shared/utils/constants";
+import { useAppSelector, useSelectUser } from "@/app/redux";
+import { NotificationService } from "@/shared/utils/notificationService";
 
 export function Article() {
   const navigate = useNavigate();
   const location = useLocation();
   const articleId: string = location.state.articleId;
+  const userId = useAppSelector(useSelectUser)?.sub as string;
 
   const [article, setArticle] = useState<IArticle | null>(null);
+  const [favorites, setFavorites] = useState<IArticle[] | null>(null);
 
   const handleGoBack = () => {
     navigate(PAGE_ROUTES.HOME);
   };
 
-  const getArticle = async (articleId: string) => {
+  const getArticle = async () => {
+    setArticle(null);
+    const fav = await ArticleService.getFavorites(userId);
     const res = await ArticleService.getArticle(articleId);
     setArticle(res.data);
+    setFavorites(fav.data);
   };
 
   useEffect(() => {
-    getArticle(articleId);
-  }, [articleId]);
+    getArticle();
+  }, []);
 
-  if (!article) {
+  useEffect(() => {
+    NotificationService.subscribe(UPDATE_ARTICLE, getArticle);
+
+    return () => {
+      NotificationService.unsubscribe(UPDATE_ARTICLE, getArticle);
+    };
+  }, []);
+
+  const handleAddToFavorites = () => {
+    ArticleService.addToFavorites(articleId, userId).then(() => {
+      NotificationService.dispatchEvent(UPDATE_ARTICLE);
+    });
+  };
+
+  if (!article || !favorites) {
     return "Loading...";
   }
+
+  const isFavorite = favorites.filter((val) => val.id === article.id).length;
 
   return (
     <>
@@ -61,11 +84,16 @@ export function Article() {
         </div>
         <div className={styles.buttons}>
           <Button onClick={handleGoBack}>Назад</Button>
-          <Button color="yellow" colorStyle="outline">
+          <Button
+            color="yellow"
+            colorStyle="outline"
+            onClick={handleAddToFavorites}
+            disabled={!!isFavorite}
+          >
             В избранное
           </Button>
         </div>
-        <Comments articleId={articleId}/>
+        <Comments articleId={articleId} />
       </main>
     </>
   );
