@@ -7,24 +7,30 @@ import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { Header } from "@/widgets/Header";
 import { useEffect, useState } from "react";
 import { Article, ArticleService } from "@/entities/article";
+import { useAppSelector, useSelectUser } from "@/app/redux";
 
 export function Favorites() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<Article[] | null>(null);
   const [page, setPage] = useState(1);
+  const userId = useAppSelector(useSelectUser)?.sub as string;
 
-  const getArticles = async (pageNumber?: number) => {
-    const res = await ArticleService.getArticles(pageNumber);
+  const getArticles = async () => {
+    const res = await ArticleService.getFavorites(userId);
     setArticles(res.data);
   };
 
   const handlePageChange = (pageNumber: number) => {
     setPage(pageNumber);
-    getArticles(pageNumber);
+    getArticles();
   };
 
   useEffect(() => {
     getArticles();
   }, []);
+
+  if (!articles) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>

@@ -12,7 +12,7 @@ export class FavouritesController {
     @Query('page') page: number = 1,
     @Query('limit') limit: number = 10,
     @Query('q') query?: string
-  ): Promise<Article[]> {
+  ) {
     return this.favouritesService.getFavourites(userId, page, limit, query);
   }
 
