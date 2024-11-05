@@ -5,7 +5,9 @@ export interface ArticleData {
   title: string;
   annotation: string;
   blob: string | null;
-  author: string;
+  author: {
+    id: string;
+  };
   sci_area: string;
   keywords: string[];
 }

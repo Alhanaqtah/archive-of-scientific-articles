@@ -8,12 +8,15 @@ import { ArticleService } from "@/entities/article";
 import { useNavigate } from "react-router-dom";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { NotificationService } from "@/shared/utils/notificationService";
+import { useAppSelector, useSelectUser } from "@/app/redux";
 
 interface InputData {
   title: string;
   annotation: string;
   blob: string | null;
-  author: string;
+  author: {
+    id: string;
+  };
   sci_area: string;
   keywords: string[];
 }
@@ -22,13 +25,16 @@ const initialState: InputData = {
   title: "",
   annotation: "",
   blob: null,
-  author: "",
+  author: {
+    id: "",
+  },
   sci_area: "",
   keywords: [],
 };
 
 export function CreateArticle() {
   const navigate = useNavigate();
+  const userId = useAppSelector(useSelectUser)?.sub as string;
   const [keyword, setKeyword] = useState("");
   const [inputData, setInputData] = useState<InputData>(initialState);
 
@@ -74,6 +80,8 @@ export function CreateArticle() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
+    inputData.author.id = userId;
 
     ArticleService.createArticle(inputData).then(() => {
       NotificationService.dispatchEvent("ArticleCreated");

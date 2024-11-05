@@ -83,9 +83,10 @@ export class ArticlesService {
     const date = new Date();
     articleData.created_at = date.toISOString();
     const article = this.articleRepository.create(articleData);
+    console.log(article);
     if (articleData.author) {
       const author = await this.userRepository.findOne({
-        where: { email: articleData.author.email },
+        where: { id: articleData.author.id },
       });
       if (!author) {
         throw new NotFoundException("Author not found");
