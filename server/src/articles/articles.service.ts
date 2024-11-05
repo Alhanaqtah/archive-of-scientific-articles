@@ -76,8 +76,6 @@ export class ArticlesService {
       relations: ["author"],
     });
 
-    console.log(articles);
-
     return articles.filter((article) => article.author.id === userId);
   }
 
@@ -85,7 +83,6 @@ export class ArticlesService {
     const date = new Date();
     articleData.created_at = date.toISOString();
     const article = this.articleRepository.create(articleData);
-    console.log("article", article);
     if (articleData.author) {
       const author = await this.userRepository.findOne({
         where: { email: articleData.author.email },

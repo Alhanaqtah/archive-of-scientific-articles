@@ -12,7 +12,7 @@ import { NotificationService } from "@/shared/utils/notificationService";
 interface InputData {
   title: string;
   annotation: string;
-  blob: File | null;
+  blob: string | null;
   author: string;
   sci_area: string;
   keywords: string[];
@@ -63,10 +63,10 @@ export function CreateArticle() {
     if (targetFiles) {
       const reader = new FileReader();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      reader.addEventListener("load", (e: any) => {
+      reader.addEventListener("load", () => {
         setInputData({
           ...inputData,
-          blob: e.target.result,
+          blob: "dadfafa",
         });
       });
       reader.readAsText(targetFiles[0]);
