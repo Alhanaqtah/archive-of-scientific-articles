@@ -7,6 +7,7 @@ import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { Header } from "@/widgets/Header";
 import { useEffect, useState } from "react";
 import { Article, ArticleService } from "@/entities/article";
+import { NotificationService } from "@/shared/utils/notificationService";
 
 export function Home() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -24,6 +25,14 @@ export function Home() {
 
   useEffect(() => {
     getArticles();
+  }, []);
+
+  useEffect(() => {
+    NotificationService.subscribe("ArticleCreated", getArticles);
+
+    return () => {
+      NotificationService.unsubscribe("ArticleCreated", getArticles);
+    };
   }, []);
 
   return (

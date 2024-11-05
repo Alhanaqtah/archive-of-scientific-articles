@@ -7,6 +7,7 @@ import { ChangeEvent, FormEvent, KeyboardEvent, useState } from "react";
 import { ArticleService } from "@/entities/article";
 import { useNavigate } from "react-router-dom";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
+import { NotificationService } from "@/shared/utils/notificationService";
 
 interface InputData {
   title: string;
@@ -80,7 +81,9 @@ export function CreateArticle() {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    ArticleService.createArticle(inputData);
+    ArticleService.createArticle(inputData).then(() =>
+      NotificationService.dispatchEvent("ArticleCreated")
+    );
     navigate(PAGE_ROUTES.HOME, { replace: true });
   };
 
