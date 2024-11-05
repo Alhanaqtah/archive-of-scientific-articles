@@ -13,6 +13,7 @@ import {
   useAppSelector,
   useSelectUser,
 } from "@/app/redux";
+import { NotificationService } from "@/shared/utils/notificationService";
 
 export function Profile() {
   const dispatch = useAppDispatch();
@@ -38,6 +39,14 @@ export function Profile() {
 
   useEffect(() => {
     getArticles();
+  }, []);
+
+  useEffect(() => {
+    NotificationService.subscribe("CreatePersonal", getArticles);
+
+    return () => {
+      NotificationService.unsubscribe("CreatePersonal", getArticles);
+    };
   }, []);
 
   return (
