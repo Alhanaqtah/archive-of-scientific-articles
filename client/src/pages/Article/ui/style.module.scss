@@ -24,6 +24,15 @@
       flex-grow: 1;
       font-size: 18px;
     }
+
+    button {
+      position: relative;
+    }
+
+    a {
+      position: absolute;
+      inset: 0;
+    }
   }
 
   .credits {

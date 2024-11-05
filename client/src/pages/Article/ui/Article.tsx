@@ -67,8 +67,13 @@ export function Article() {
         <h1>{article.title}</h1>
         <p>{article.annotation}</p>
         <div className={styles.fileDownload}>
-          <h2>Название файла с полной статьей.pdf</h2>
+          <h2>{article.title}.pdf</h2>
           <Button>
+            <a
+              href="/Article.pdf"
+              content={article.blob as unknown as string}
+              download={article.title}
+            ></a>
             <img src={FileIcon} alt="file icon" />
           </Button>
         </div>
