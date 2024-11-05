@@ -25,14 +25,20 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
         </tr>
       </thead>
       <tbody>
-        {articles.map((article) => (
-          <tr key={article.id} onClick={handleArticleClick(article.id)}>
-            <td>{article.title}</td>
-            <td>{article.author.email}</td>
-            <td>{article.sci_area}</td>
-            <td>{getDate(article.created_at)}</td>
-          </tr>
-        ))}
+        {articles.length === 0 ? (
+          <td colSpan={4}>
+            <span>Нету статей</span>
+          </td>
+        ) : (
+          articles.map((article) => (
+            <tr key={article.id} onClick={handleArticleClick(article.id)}>
+              <td>{article.title}</td>
+              <td>{article.author.email}</td>
+              <td>{article.sci_area}</td>
+              <td>{getDate(article.created_at)}</td>
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   );
