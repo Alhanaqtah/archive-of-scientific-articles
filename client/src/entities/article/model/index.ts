@@ -49,4 +49,10 @@ export class ArticleService {
   static async getFavorites(userId: string): Promise<AxiosResponse<Article[]>> {
     return api.get(`/favourites/${userId}`);
   }
+
+  static async getUserArticles(
+    userId: string
+  ): Promise<AxiosResponse<Article[]>> {
+    return api.get(`/articles/user/${userId}`);
+  }
 }

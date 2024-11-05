@@ -1,30 +1,30 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Role } from './roles/roles.model';
-import { User } from './users/user.model';
-import { AuthModule } from './auth/auth.module';
-import { ArticlesModule } from './articles/articles.module';
-import { RolesModule } from './roles/roles.module';
-import { UsersModule } from './users/users.module';
-import { Article } from './articles/articles.model';
-import { FavouritesModule } from './favourites/favourites.module';
-import { Favourite } from './favourites/favourites.model';
-import { CommentsModule } from './comments/comments.module';
-import { Comment } from './comments/comments.model';
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { Role } from "./roles/roles.model";
+import { User } from "./users/user.model";
+import { AuthModule } from "./auth/auth.module";
+import { ArticlesModule } from "./articles/articles.module";
+import { RolesModule } from "./roles/roles.module";
+import { UsersModule } from "./users/users.module";
+import { Article } from "./articles/articles.model";
+import { FavouritesModule } from "./favourites/favourites.module";
+import { Favourite } from "./favourites/favourites.model";
+import { CommentsModule } from "./comments/comments.module";
+import { Comment } from "./comments/comments.model";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
+      type: "postgres",
+      host: "localhost",
       port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'article_archive',
+      username: "postgres",
+      password: "postgres",
+      database: "article_archive",
       entities: [User, Role, Article, Favourite, Comment],
       synchronize: true,
-      autoLoadEntities: true
+      autoLoadEntities: true,
     }),
     AuthModule,
     RolesModule,

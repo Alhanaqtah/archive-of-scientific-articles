@@ -7,21 +7,29 @@ import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { Header } from "@/widgets/Header";
 import { useEffect, useState } from "react";
 import { Article, ArticleService } from "@/entities/article";
-import { logout, useAppDispatch } from "@/app/redux";
+import {
+  logout,
+  useAppDispatch,
+  useAppSelector,
+  useSelectUser,
+} from "@/app/redux";
 
 export function Profile() {
   const dispatch = useAppDispatch();
+  const user = useAppSelector(useSelectUser);
   const [articles, setArticles] = useState<Article[]>([]);
   const [page, setPage] = useState(1);
 
-  const getArticles = async (pageNumber?: number) => {
-    const res = await ArticleService.getArticles(pageNumber);
+  const getArticles = async () => {
+    if (!user) return;
+
+    const res = await ArticleService.getUserArticles(user.sub);
     setArticles(res.data);
   };
 
   const handlePageChange = (pageNumber: number) => {
     setPage(pageNumber);
-    getArticles(pageNumber);
+    getArticles();
   };
 
   const handleLogout = () => {

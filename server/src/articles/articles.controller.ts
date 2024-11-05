@@ -32,6 +32,11 @@ export class ArticlesController {
     return this.articlesService.findOne(id);
   }
 
+  @Get("user/:userId")
+  async getUserArticles(@Param("userId") userId: string): Promise<Article[]> {
+    return this.articlesService.findWithUserId(userId);
+  }
+
   @Post()
   async createArticle(@Body() articleData: Article): Promise<Object> {
     return this.articlesService.create(articleData);
