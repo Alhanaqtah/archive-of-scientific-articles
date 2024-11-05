@@ -41,12 +41,23 @@ export class FavouritesService {
     }
 
     const favourites = await queryBuilder.getMany();
-    const res = favourites.map((fav) => ({
-      ...fav.article,
-      author: {
-        email: user.email,
-      },
-    }));
+    const res = await Promise.all(
+      favourites.map(async (fav) => {
+        console.log("fav", fav);
+        const article = await this.articleRepository.findOne({
+          where: { id: fav.article.id },
+        });
+        console.log("article", article);
+
+        return {
+          ...fav.article,
+          author: {
+            email: "af"
+          },
+        };
+      })
+    );
+
     console.log(res);
     return res;
   }
