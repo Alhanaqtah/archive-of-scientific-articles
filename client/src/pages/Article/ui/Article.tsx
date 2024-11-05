@@ -13,6 +13,7 @@ import { Article as IArticle, ArticleService } from "@/entities/article";
 import { PAGE_ROUTES, UPDATE_ARTICLE } from "@/shared/utils/constants";
 import { useAppSelector, useSelectUser } from "@/app/redux";
 import { NotificationService } from "@/shared/utils/notificationService";
+import { getDate } from "@/shared/utils/dateConverter";
 
 export function Article() {
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ export function Article() {
         <div className={styles.credits}>
           <p>{article.author.email}</p>
           <p>{article.sci_area}</p>
-          <p>{article.created_at}</p>
+          <p>{getDate(article.created_at)}</p>
         </div>
         <div className={styles.keywords}>
           {article.keywords.map((keyword) => (

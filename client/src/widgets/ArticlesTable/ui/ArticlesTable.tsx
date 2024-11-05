@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 import { PAGE_ROUTES } from "@/shared/utils/constants";
 import { Article } from "@/entities/article";
+import { getDate } from "@/shared/utils/dateConverter";
 
 interface ArticlesTableProps {
   articles: Article[];
@@ -12,10 +13,6 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
   const navigate = useNavigate();
   const handleArticleClick = (id: string) => () => {
     navigate(PAGE_ROUTES.ARTICLES, { state: { articleId: id } });
-  };
-
-  const getDate = (date: string) => {
-    return date.split("T")[0].split("-").reverse().join(".");
   };
 
   return (
