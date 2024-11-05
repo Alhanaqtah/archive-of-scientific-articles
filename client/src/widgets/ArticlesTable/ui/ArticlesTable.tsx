@@ -14,6 +14,10 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
     navigate(PAGE_ROUTES.ARTICLES, { state: { articleId: id } });
   };
 
+  const getDate = (date: string) => {
+    return date.split("T")[0].split("-").reverse().join(".");
+  };
+
   return (
     <table className={styles.table}>
       <thead>
@@ -30,7 +34,7 @@ export function ArticlesTable({ articles }: ArticlesTableProps) {
             <td>{article.title}</td>
             <td>{article.author.email}</td>
             <td>{article.sci_area}</td>
-            <td>{article.created_at}</td>
+            <td>{getDate(article.created_at)}</td>
           </tr>
         ))}
       </tbody>
