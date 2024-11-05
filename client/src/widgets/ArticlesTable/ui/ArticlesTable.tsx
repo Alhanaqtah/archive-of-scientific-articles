@@ -9,7 +9,6 @@ interface ArticlesTableProps {
 }
 
 export function ArticlesTable({ articles }: ArticlesTableProps) {
-  console.log(articles);
   const navigate = useNavigate();
   const handleArticleClick = (id: string) => () => {
     navigate(PAGE_ROUTES.ARTICLES, { state: { articleId: id } });
